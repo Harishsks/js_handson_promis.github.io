@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Js handson Promises</title>
+</head>
+<body>
+<h1 style="text-align: center;">JS HANDSON PROMISES</h1>
+<h3><strong>Q1.</strong>Write one example explaining how you can write a callback function.</h3>
+<p><strong>Ans. </strong>function sum(a, b){ <br>
+    return a + b;<br>
+  }<br>
+  function detail(name, sum){<br>
+    console.log(`${name} ${sum}`);<br>
+  }<br>
+  <br>
+  detail("Result", sum(10,20))</p> 
+<h3><strong>Q2.</strong>"Write the promise function to print numbers from 1 to 7, in which 1 should be printed after 1 sec, 2 should be printed after 2 sec, 3 should be printed after 3 sec, and so on. 
+    <br>
+    Numbers<br>
+    1<br>
+    2<br>
+    3<br>
+    4<br>
+    5<br>
+    6<br>
+    7"</h3>
+<p><strong>Ans. </strong>setTimeout(() => {<br>
+    let count=1;<br>
+      console.log(count++);<br>
+      setTimeout(() => {<br>
+        console.log(count++);<br>
+        setTimeout(() => {<br>
+          console.log(count++);<br>
+            setTimeout(() => {<br>
+              console.log(count++);<br>
+                setTimeout(() =>{<br>
+                  console.log(count++);<br>
+                    setTimeout(() =>{<br>
+                      console.log(count++);<br>
+                        setTimeout(() =>{<br>
+                          console.log(count++);<br>
+                        },7000)<br>
+                    },6000)<br>
+                },5000)<br>
+            },4000);<br>
+        },3000);<br>
+    },2000);<br>
+  },1000);</p> 
+<h3><strong>Q3.</strong>"Write the promise function to print numbers from 1 to 7, in which 1 should be printed after 1 sec, 2 should be printed after 2 sec, 3 should be printed after 3 sec, and so on. 
+    <br>
+    Numbers<br>
+    1<br>
+    2<br>
+    3<br>
+    4<br>
+    5<br>
+    6<br>
+    7"</h3>
+<p><strong>Ans. </ strongconst printNumberPromise = ms = > new Promise(resolve => setTimeout(resolve, ms)); <br>
+    let chain = Promise.resolve(); <br>
+    for (let count = 1; count <= 7; count++) { <br>
+      chain = chain.then(() => { <br>
+        console.log(count); <br>
+        return printNumberPromise(count*1000); <br>
+      }); <br>
+    }<br>
+></p> 
+<h3><strong>Q4.</strong>"Create a promise function accepting an argument, if yes is passed to the function then it should go to resolved state and print Promise Resolved, and if nothing is passed 
+    then it should go to reject the state and catch the error and print Promise Rejected "</h3>
+<p><strong>Ans. </strong> const promise = new Promise(function(res,rej){<br>
+    let result="";<br>
+    if(result == "yes"){<br>
+      res("promise resolved");<br>
+    }<br>
+    else{<br>
+      rej("promise rejected");<br>
+    }<br>
+  })<br>
+  <br>
+  promise.then(function(data){<br>
+    console.log(data);<br>
+  }).catch(function(err){<br>
+    console.log("Error",err);<br>
+  })</p> 
+<h3><strong>Q5.</strong>Create examples to explain callback function</h3>
+<p><strong>Ans. </strong>// Main function<br>
+    const mainFunction = (callback) => {<br>
+      setTimeout(() => {<br>
+        callback([2, 3, 4]);<br>
+      }, 2000)<br>
+    }<br>
+    <br><br>
+    // Add function<br>
+    const add = (array) => {<br>
+      let sum = 0;<br>
+      for(let i of array) {<br>
+        sum += i;<br>
+      }<br>
+      console.log(sum);<br>
+    }<br>
+    <br>
+    // Calling main function<br>
+  mainFunction(add);<br>
+</p> 
+<h3><strong>Q6.</strong>Create examples to explain callback hell function</h3>
+<p><strong>Ans. </strong>setTimeout(() => {<br>
+    console.log("Hey,")<br>
+    setTimeout(() => {<br>
+      console.log("have");<br>
+      setTimeout(() =>{<br>
+        console.log("a");<br>
+        setTimeout(() => {<br>
+          console.log("nice");<br>
+          setTimeout(() =>{<br>
+            console.log("day");<br>
+          },5000)<br>
+        },4000)<br>
+      },3000)<br>
+    },2000)<br>
+  },1000)<br>
+</p> 
+<h3><strong>Q7.</strong>Create examples to explain promises function</h3>
+<p><strong>Ans. </strong>const promise = new Promise(function(res,rej){<br>
+    let num=7;<br>
+    if(num%2 == 0){<br>
+      res("its even");<br>
+    }<br>
+    else{<br>
+      rej("its not even");<br>
+    }<br>
+  })<br>
+  
+  promise.then(function(data){<br>
+    console.log(data);<br>
+  }).catch(function(err){<br>
+    console.log("Error",err);<br>
+  })<br>
+</p> 
+<h3><strong>Q8.</strong>Create examples to explain async await function</h3>
+<p><strong>Ans. </strong>function resolveAfter2Seconds() {<br>
+    return new Promise(resolve => {<br>
+      setTimeout(() => {<br>
+        resolve('resolved');<br>
+      }, 2000);<br>
+    });<br>
+  }<br>
+  
+  async function asyncCall() {<br>
+    console.log('calling');<br>
+    const result = await resolveAfter2Seconds();<br>
+    console.log(result);<br>
+    
+  }<br>
+  
+  asyncCall();</p> 
+<h3><strong>Q9.</strong>Create examples to explain promise.all function</h3>
+<p><strong>Ans. </strong>const promise1 = Promise.resolve(3);<br>
+    const promise2 = 42;<br>
+    const promise3 = new Promise((resolve, reject) => {<br>
+      setTimeout(resolve, 100, 'foo');<br>
+    });<br>
+    <br>
+    Promise.all([promise1, promise2, promise3]).then((values) => {<br>
+      console.log(values);<br>
+    });</p>    
+</body>
+</html>
